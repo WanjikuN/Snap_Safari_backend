@@ -30,7 +30,7 @@ class Album(db.Model, SerializerMixin):
 
     #columns
     id = db.Column(db.Integer, primary_key=True)
-    title = db.column(db.String) 
+    title = db.Column(db.String) 
     users_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     # Relationships

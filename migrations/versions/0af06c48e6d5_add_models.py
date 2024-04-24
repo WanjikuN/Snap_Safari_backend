@@ -1,8 +1,8 @@
-"""Add User, Album and Photo models
+"""Add Models
 
-Revision ID: 0c080f305756
+Revision ID: 0af06c48e6d5
 Revises: 
-Create Date: 2024-04-24 17:20:40.276445
+Create Date: 2024-04-24 18:05:59.919491
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '0c080f305756'
+revision: str = '0af06c48e6d5'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
