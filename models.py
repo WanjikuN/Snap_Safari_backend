@@ -2,6 +2,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
 
+
 db = SQLAlchemy()
 userAlbums_association = db.Table(
     'user_albums',
@@ -15,9 +16,9 @@ class User(db.Model, SerializerMixin):
 
     #columns
     id = db.Column(db.Integer, primary_key=True)
-    name = db.column(db.String) 
-    username = db.column(db. String, unique=True)
-    email = db.column(db.String, unique=True)
+    name = db.Column(db.String) 
+    username = db.Column(db. String, unique=True)
+    email = db.Column(db.String, unique=True)
 
     #relationships
     albums = db.relationship('Album', secondary = userAlbums_association, back_populates='users')
@@ -43,8 +44,8 @@ class Photo(db.Model, SerializerMixin):
 
     #columns
     id = db.Column(db.Integer, primary_key=True)
-    title = db.column(db.String) 
-    image_url = db.column(db.String)
+    title = db.Column(db.String) 
+    image_url = db.Column(db.String)
     album_id = db.Column(db.Integer, db.ForeignKey("albums.id"))
     
     # relationships
