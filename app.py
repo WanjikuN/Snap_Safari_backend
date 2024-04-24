@@ -103,13 +103,11 @@ class PhotoResource(Resource):
     def patch(self, photo_id):
         photo = Photo.query.get_or_404(photo_id)
         parser = reqparse.RequestParser()
-        parser.add_argument('title', type=str, required=True)
-        parser.add_argument('image_url', type=str, required=True)
-        parser.add_argument('album_id', type=int, required=True)
+        parser.add_argument('title', type=str)
         args = parser.parse_args()
-        photo.title = args['title']
-        photo.image_url = args['image_url']
-        photo.album_id = args['album_id']
+        if 'title' in args:
+            photo.title = args['title']
+
         db.session.commit()
         return photo
 
