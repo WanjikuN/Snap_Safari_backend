@@ -5,9 +5,13 @@ from random import randint
 from datetime import datetime
 import random
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///snap_safari.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///snap_safari.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 fake = Faker()
@@ -15,9 +19,9 @@ fake = Faker()
 
 def clear_tables():
         # Clear all records from the tables
-        db.session.query(User).delete()
-        db.session.query(Album).delete()
-        db.session.query(Photo).delete()
+        # db.session.query(User).delete()
+        # db.session.query(Album).delete()
+        # db.session.query(Photo).delete()
 
         # Commit the changes to the database
         db.session.commit()
