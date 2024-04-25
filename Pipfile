@@ -9,6 +9,7 @@ sqlalchemy-serializer = "*"
 flask-sqlalchemy = "*"
 faker = "*"
 flask-restful = "*"
+flask-restx = "*"
 
 [dev-packages]
 
