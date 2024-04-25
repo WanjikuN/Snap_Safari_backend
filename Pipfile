@@ -10,6 +10,9 @@ flask-sqlalchemy = "*"
 faker = "*"
 flask-restful = "*"
 flask-restx = "*"
+python-dotenv = "*"
+gunicorn = "*"
+honcho = "*"
 
 [dev-packages]
 
