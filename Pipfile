@@ -13,6 +13,7 @@ flask-restx = "*"
 python-dotenv = "*"
 gunicorn = "*"
 honcho = "*"
+flask-cors = "*"
 
 [dev-packages]
 

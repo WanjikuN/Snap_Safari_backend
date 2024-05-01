@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields, reqparse
 from models import db, User, Album, Photo
+from flask_cors import CORS, cross_origin
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -12,6 +13,7 @@ db.init_app(app)
 
 api = Api(app, version='1.0', title='SnapSafari API',
           description='An API for managing users, albums, and photos')
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 user_fields = api.model('User', {
     'id': fields.Integer,
