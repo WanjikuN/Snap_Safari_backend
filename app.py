@@ -13,6 +13,7 @@ db.init_app(app)
 
 api = Api(app, version='1.0', title='SnapSafari API',
           description='An API for managing users, albums, and photos')
+CORS(app, supports_credentials=True)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 user_fields = api.model('User', {
