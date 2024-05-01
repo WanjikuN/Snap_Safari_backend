@@ -19,12 +19,15 @@ fake = Faker()
 
 def clear_tables():
         # Clear all records from the tables
-        # db.session.query(User).delete()
-        # db.session.query(Album).delete()
-        # db.session.query(Photo).delete()
-
-        # Commit the changes to the database
+        db.session.query(Photo).delete()
         db.session.commit()
+
+        db.session.query(Album).delete()
+        db.session.commit()
+
+        db.session.query(User).delete()
+        db.session.commit()
+        # Commit the changes to the database
 def create_users(num_users):
     users = []
     for _ in range(num_users):
@@ -41,9 +44,10 @@ def create_albums(num_albums, users):
     albums = []
     for _ in range(num_albums):
         user = random.choice(users)
+        print("User ID:", user.id)
         album = Album(
             title=fake.sentence(),
-            users_id=user.id  
+            users_id=user.id
         )
         albums.append(album)
     return albums

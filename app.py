@@ -26,7 +26,7 @@ user_fields = api.model('User', {
 album_fields = api.model('Album', {
     'id': fields.Integer,
     'title': fields.String,
-    'user_id': fields.Integer
+    'users_id': fields.Integer
 })
 
 photo_fields = api.model('Photo', {
