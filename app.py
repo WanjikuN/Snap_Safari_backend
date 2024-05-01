@@ -13,8 +13,9 @@ db.init_app(app)
 
 api = Api(app, version='1.0', title='SnapSafari API',
           description='An API for managing users, albums, and photos')
-CORS(app, supports_credentials=True)
+
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "*, http://localhost:36859"}}, supports_credentials=True)
 
 user_fields = api.model('User', {
     'id': fields.Integer,
@@ -46,8 +47,6 @@ photo_ns = api.namespace('photos', description='Photo operations')
 @user_ns.route('/')
 class UserListResource(Resource):
     @user_ns.marshal_list_with(user_fields)
-    @cross_origin(supports_credentials=True)
-
     def get(self):
         return User.query.all()
 
@@ -63,8 +62,6 @@ class UserListResource(Resource):
 @user_ns.route('/<int:user_id>')
 @user_ns.param('user_id', 'The user identifier')
 class UserResource(Resource):
-    @cross_origin(supports_credentials=True)
-
     @user_ns.marshal_with(user_fields)
     def get(self, user_id):
         return User.query.get_or_404(user_id)
@@ -86,8 +83,6 @@ class UserResource(Resource):
 
 @album_ns.route('/')
 class AlbumListResource(Resource):
-    @cross_origin(supports_credentials=True)
-
     @album_ns.marshal_list_with(album_fields)
     def get(self):
         return Album.query.all()
@@ -104,16 +99,12 @@ class AlbumListResource(Resource):
 @album_ns.route('/<int:album_id>')
 @album_ns.param('album_id', 'The album identifier')
 class AlbumResource(Resource):
-    @cross_origin(supports_credentials=True)
-
     @album_ns.marshal_with(album_fields)
     def get(self, album_id):
         return Album.query.get_or_404(album_id)
 
 @photo_ns.route('/')
 class PhotoListResource(Resource):
-    @cross_origin(supports_credentials=True)
-
     @photo_ns.marshal_list_with(photo_fields)
     def get(self):
         return Photo.query.all()
@@ -121,8 +112,6 @@ class PhotoListResource(Resource):
 @photo_ns.route('/<int:photo_id>')
 @photo_ns.param('photo_id', 'The photo identifier')
 class PhotoResource(Resource):
-    @cross_origin(supports_credentials=True)
-
     @photo_ns.marshal_with(photo_fields)
     def get(self, photo_id):
         return Photo.query.get_or_404(photo_id)
